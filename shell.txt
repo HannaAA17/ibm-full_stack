@@ -13,3 +13,7 @@
 !npx create-react-app myfirstapp
 !cd myfirstapp
 !npm start
+
+
+# install package
+!npm install --save axios
