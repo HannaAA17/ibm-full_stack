@@ -61,7 +61,9 @@ ROOT_URLCONF = 'djangoproj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR,'frontend/static'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,5 +136,15 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'frontend/static'),
+]
 
+# make gitpod to work
+if __import__('os').environ.get('GITPOD_WORKSPACE_URL'):
+    try:
+        gp = __import__('subprocess').run(["gp", "url", "8000"], capture_output=True, text=True)
+        if gp.returncode == 0 and gp.stdout:
+            ALLOWED_HOSTS += [gp.stdout.strip().split('//', 1)[-1]]
+    except:
+        ALLOWED_HOSTS += ['*']
