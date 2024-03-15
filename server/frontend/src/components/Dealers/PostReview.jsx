@@ -54,14 +54,15 @@ const PostReview = () => {
           "Content-Type": "application/json",
       },
       body: jsoninput,
-  });
+    });
 
-  const json = await res.json();
-  if (json.status === 200) {
-      window.location.href = window.location.origin+"/dealer/"+id;
+    const json = await res.json();
+    if (json.status === 200) {
+        window.location.href = window.location.origin+"/dealer/"+id;
+    }
+
   }
 
-  }
   const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
       method: "GET"
